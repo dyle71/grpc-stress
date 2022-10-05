@@ -80,6 +80,9 @@ $ source venv/bin/activate
 $ src/stress.py 
 ```
 
+# And....
+
+... I cannot reproduce the problem. =(
 
 
 ## Notable guidelines

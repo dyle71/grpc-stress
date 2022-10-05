@@ -1,0 +1,13 @@
+grpcio>=1.46.3
+grpcio-tools>=1.46.3
+
+# ------------------------------------------------------------
+# protobuf 4.21.6 has **breaking changes** and
+# needs a protoc which has libproto >= 3.19.0
+#
+#       protobuf>=4.21.6
+#
+# At the moment (Ubuntu 22.04 LTS) we have to stick with protobuf <= 3.20
+# else we cannot install on other machines frictionless.
+
+protobuf<=3.20

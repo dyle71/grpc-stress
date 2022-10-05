@@ -1,0 +1,34 @@
+/*
+ * server.proto
+ *
+ * This file is part of the gRPC stress test investigation.
+ *
+ * The 'LICENSE.txt' file in the project root holds the software license.
+ * Copyright (C) 2022 headcode.space e.U.
+ * Oliver Maurhart <info@headcode.space>, https://www.headcode.space
+ */
+
+
+// ------------------------------------------------------------
+//  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+//      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+//      "OPTIONAL" in this document are to be interpreted as
+//      described in RFC 2119.
+//
+//  See: https://datatracker.ietf.org/doc/html/rfc2119
+// ------------------------------------------------------------
+
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package stress;
+
+message Text {
+  double timestamp = 1;
+  string text = 2;
+}
+
+service Server {
+  rpc get_text(google.protobuf.Empty) returns(Text) {}
+}

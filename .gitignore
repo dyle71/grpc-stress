@@ -190,3 +190,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# ------------------------------------------------------------
+client.err
+client.out
+server.err
+server.out

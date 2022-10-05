@@ -38,7 +38,7 @@ class ServerServicer(server_pb2_grpc.ServerServicer):
 
         text = server_pb2.Text()
         text.timestamp = time.time()
-        text.text = f"This is message No. {self._message_count}."
+        text.text = f"{text.time():8.3f} - This is message No. {self._message_count}."
 
         sys.stdout.write(f">>> {text.text}\n")
         sys.stdout.flush()

@@ -18,13 +18,14 @@ $ source venv/bin/activate
 
 ## Create the protobuf files
 
-Within the virtual environment (see above): 
+Create the protobuf python files: 
 ```bash
+$ source venv/bin/activate
 $ python -m grpc_tools.protoc --proto_path=src/ --python_out=src/ --grpc_python_out=src/ src/server.proto 
 ```
 
 
-## Run the sample
+## Run the single sample
 
 A single run is
 1. Start the server:
@@ -38,6 +39,47 @@ A single run is
     $ source venv/bin/activate
     $ src/client.py
     ```
+
+Run those files with `--help` to see the additional options.
+
+```bash
+$ src/server.py --help
+Usage: server.py [OPTIONS]
+
+  Run the server.
+
+Options:
+  -a, --address TEXT           Address (IP:PORT) of server.  [default:
+                               127.0.0.1:5555]
+  --max-thread-worker INTEGER  Number of thread workers for gRPC.  [default:
+                               10]
+  -v, --verbose                Show the server text.
+  -h, --help                   Show this message and exit.
+```
+
+```bash
+$ src/client.py --help
+Usage: client.py [OPTIONS]
+
+  Run the client.
+
+Options:
+  -a, --address TEXT     Address (IP:PORT) of server.  [default:
+                         127.0.0.1:5555]
+  -n, --number INTEGER   Number of calls.  [default: 1000]
+  -t, --timeout INTEGER  Timeout of gRPC call in seconds.  [default: 5]
+  -v, --verbose          Show the server text.
+  -h, --help             Show this message and exit.
+```
+
+
+## Let there be hell!
+
+```bash
+$ source venv/bin/activate
+$ src/stress.py 
+```
+
 
 
 ## Notable guidelines

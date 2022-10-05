@@ -18,6 +18,7 @@ from concurrent.futures import ThreadPoolExecutor
 import sys
 import time
 
+import click
 import grpc
 
 import server_pb2
@@ -45,21 +46,31 @@ class ServerServicer(server_pb2_grpc.ServerServicer):
         return text
 
 
-def main():
+@click.command(context_settings={'help_option_names': ['-h', '--help']})
+@click.option('--address', '-a', type=str, default='127.0.0.1:5555', show_default=True,
+              help='Address (IP:PORT) of server.')
+@click.option('--max-thread-worker', type=int, default=10, show_default=True,
+              help='Number of thread workers for gRPC.')
+@click.option('--verbose', '-v', is_flag=True, help='Show the server text.')
+def main(address: str, max_thread_worker: int, verbose: bool):
     """Run the server."""
 
-    grpc_server = grpc.server(ThreadPoolExecutor(max_workers=10))
+    def write(message: str) -> None:
+        if verbose:
+            sys.stdout.write(message)
+
+    grpc_server = grpc.server(ThreadPoolExecutor(max_workers=max_thread_worker))
     server_pb2_grpc.add_ServerServicer_to_server(ServerServicer(), grpc_server)
-    grpc_server.add_insecure_port(address="127.0.0.1:5555")
+    grpc_server.add_insecure_port(address=address)
     grpc_server.start()
 
-    sys.stdout.write(f"Server started.\n")
+    write(f"Server started.\n")
     try:
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
         ...
-    sys.stdout.write(f"\nTerminating.\n")
+    write(f"\nTerminating.\n")
 
     grpc_server.stop(grace=1.0)
 

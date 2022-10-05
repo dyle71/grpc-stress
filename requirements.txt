@@ -1,3 +1,4 @@
+Click
 grpcio>=1.46.3
 grpcio-tools>=1.46.3
 

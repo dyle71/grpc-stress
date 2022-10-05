@@ -25,7 +25,7 @@ import server_pb2_grpc
 
 
 class ServerServicer(server_pb2_grpc.ServerServicer):
-    """This is the gRPC stree server endpoint."""
+    """This is the gRPC stress server endpoint."""
 
     def __init__(self) -> None:
         super().__init__()

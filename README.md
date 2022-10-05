@@ -26,8 +26,18 @@ $ python -m grpc_tools.protoc --proto_path=src/ --python_out=src/ --grpc_python_
 
 ## Run the sample
 
-***TBD***
+A single run is
+1. Start the server:
+    ```bash
+    $ source venv/bin/activate
+    $ src/server.py
+    ```
 
+2. Start any number of clients:
+    ```bash
+    $ source venv/bin/activate
+    $ src/client.py
+    ```
 
 
 ## Notable guidelines
